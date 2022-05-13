@@ -15,7 +15,7 @@ class Ui_MainWindow(object):
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.layoutWidget = QtWidgets.QWidget(self.centralwidget)
-        self.layoutWidget.setGeometry(QtCore.QRect(10, 10, 791, 541))
+        self.layoutWidget.setGeometry(QtCore.QRect(10, 10, 1000, 541))
         self.layoutWidget.setObjectName("layoutWidget")
         self.horizontalLayout = QtWidgets.QHBoxLayout(self.layoutWidget)
         self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
@@ -25,6 +25,9 @@ class Ui_MainWindow(object):
         self.opt = QtWidgets.QPushButton(self.layoutWidget)
         self.opt.setObjectName("opt")
         self.verticalLayout.addWidget(self.opt)
+        self.copyboard = QtWidgets.QPushButton(self.layoutWidget)
+        self.copyboard.setObjectName("copyboard")
+        self.verticalLayout.addWidget(self.copyboard)
         self.start = QtWidgets.QPushButton(self.layoutWidget)
         self.start.setObjectName("start")
         self.verticalLayout.addWidget(self.start)
@@ -46,18 +49,14 @@ class Ui_MainWindow(object):
         self.tedit.setObjectName("tedit")
         self.horizontalLayout.addWidget(self.tedit)
         MainWindow.setCentralWidget(self.centralwidget)
-        self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 800, 22))
-        self.menubar.setObjectName("menubar")
-        self.menufile = QtWidgets.QMenu(self.menubar)
-        self.menufile.setObjectName("menufile")
-        MainWindow.setMenuBar(self.menubar)
+
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
-        self.menubar.addAction(self.menufile.menuAction())
+
 
         self.retranslateUi(MainWindow)
+        self.copyboard.clicked.connect(MainWindow.loadcopyImage)
         self.opt.clicked.connect(MainWindow.loadImage)
         self.start.clicked.connect(MainWindow.recognize)
         self.config.clicked.connect(MainWindow.configApi)
@@ -69,9 +68,10 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "My OCR"))
+        self.copyboard.setText(_translate("MainWindow", "从剪贴板获得图片"))
         self.opt.setText(_translate("MainWindow", "选择图片"))
         self.start.setText(_translate("MainWindow", "开始识别"))
         self.clean.setText(_translate("MainWindow", "清空"))
         self.config.setText(_translate("MainWindow", "配置API Key"))
-        self.menufile.setTitle(_translate("MainWindow", "file"))
+
 
